@@ -1,0 +1,66 @@
+\begin{tikzpicture}
+	\begin{scope}[]
+		\foreach \x in {0,...,15}{
+			\foreach \y in {0,...,4}
+				\node [rectangle ,draw, inner sep=3.5mm](\x\y) at (\x,\y){} ;
+		}
+		\filldraw[blue, opacity=0.2] (00.south west) rectangle  (104.north east);
+		\foreach \name in {120,121,122,123,132,134,142,144,150,151,152,153}
+ 		\fill [red](\name.south west) rectangle (\name.north east);
+
+	\end{scope}
+% ----------------------------------------------
+	\begin{scope}[yshift=-6cm]
+	\foreach \x in {0,...,15}{
+			\foreach \y in {0,...,4}
+				\node [rectangle ,draw, inner sep=3.5mm](\x\y) at (\x,\y){} ;
+		}
+
+		\filldraw[blue, opacity=0.2] (00.south west) rectangle  (104.north east);
+		\foreach \name in {110,111,112,113,122,124,132,134,140,141,142,143}
+ 		\fill [red](\name.south west) rectangle (\name.north east);
+		\end{scope}
+% ----------------------------------------------
+	\begin{scope}[yshift=2*-6cm]
+	\foreach \x in {0,...,15}{
+			\foreach \y in {0,...,4}
+				\node [rectangle ,draw, inner sep=3.5mm](\x\y) at (\x,\y){} ;
+		}
+
+		\filldraw[blue, opacity=0.2] (00.south west) rectangle  (104.north east);
+		\foreach \name in {100,101,102,103,
+										112,114,
+										122,124,
+										130,131,132,133}
+ 		\fill [red](\name.south west) rectangle (\name.north east);
+		\end{scope}
+% ----------------------------------------------
+	\begin{scope}[yshift=3*-6cm]
+	\foreach \x in {0,...,15}{
+			\foreach \y in {0,...,4}
+				\node [rectangle ,draw, inner sep=3.5mm](\x\y) at (\x,\y){} ;
+		}
+
+		\filldraw[blue, opacity=0.2] (00.south west) rectangle  (104.north east);
+		\foreach \name in {90,91,92,93,
+										102,104,
+										112,114,
+										120,121,122,123}
+ 		\fill [red](\name.south west) rectangle (\name.north east);
+		\end{scope}
+% ----------------------------------------------
+	\begin{scope}[yshift=4*-6cm]
+	\foreach \x in {0,...,15}{
+			\foreach \y in {0,...,4}
+				\node [rectangle ,draw, inner sep=3.5mm](\x\y) at (\x,\y){} ;
+		}
+
+		\filldraw[blue, opacity=0.2] (00.south west) rectangle  (104.north east);
+		\foreach \name in {80,81,82,83,
+										92,94,
+										102,104,
+										110,111,112,113}
+ 		\fill [red](\name.south west) rectangle (\name.north east);
+		\end{scope}
+
+\end{tikzpicture}

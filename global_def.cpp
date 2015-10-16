@@ -6,4 +6,5 @@ int data_pin = 10;
 
 int iteration = 1;
 
-
+bool matrix		[MATRIX_HEIGHT][MATRIX_WIDTH+MATRIX_BUFFER];
+int	matrix_slice[MATRIX_HEIGHT][1];

@@ -4,14 +4,13 @@
 #include <Arduino.h>
 #include "global_def.h"
 
-void		shift_Matrix_right	(int delay_iteration, int ammount);
+#define BLANK 0xffe0
+
+void		shift_Matrix_left	(int delay_iteration, int ammount);
 uint16_t	displayMatrix		();
 void		shift				(uint16_t input);
-int			insertLetter		(int letter);
+int			insertLetter		(int letter, int delay_ms);
 void		insertSpace			();
 void		displayMessage		(char* message, int delay_iteration);
-
-extern bool matrix[5][14];
-extern int	matrix_slice[5][1];
 
 #endif
