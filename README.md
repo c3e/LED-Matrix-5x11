@@ -13,9 +13,9 @@ Initial Situation
 Calculate letter width
 
 Empty the space for the next letter
-![shift by one](images/shift_1.png)
-![shift by two](images/shift_2.png)
-![shift by three](images/shift_3.png)
+![shift by one](Images/shift_1.png)
+![shift by two](Images/shift_2.png)
+![shift by three](Images/shift_3.png)
 
 Insert new letter:
-![insert new letter](images/insert_new_letter.png)
+![insert new letter](Images/insert_new_letter.png)
