@@ -6,21 +6,20 @@ two HC595-Shift registers.
 
 Text is displayed pictured in the following sheme:
 
+## Initial Situation
 ![initial situation](Images/initial_situation.png)
 
-Initial Situation
 
+## Calculate the width of the letter to insert
 ![calculate letter width](Images/calculate_letter_width.png)
 
-Calculate letter width
+## Empty the space for the next letter
 
-Empty the space for the next letter
-
-![shift by one](Images/shift_1.png
+![shift by one](Images/shift_1.png)
 
 ![shift by two](Images/shift_2.png)
 
 ![shift by three](Images/shift_3.png)
 
-Insert new letter:
+## Insert the new letter:
 ![insert new letter](Images/insert_new_letter.png)
