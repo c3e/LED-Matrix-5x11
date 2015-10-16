@@ -31,6 +31,8 @@ uint16_t displayMatrix() {
 	for (i = 0; i < MATRIX_HEIGHT; i++) {
 		for (j = 0; j < MATRIX_WIDTH; j++) {
 			if (matrix[i][j]) {
+				// Both offsets derivate from the used hardware and
+				// wiring. Only change these if you change the former!
 				shift_out |=	1 << (4 - i);	// Map the appropriate Row
 				shift_out &= ~( 1 << (15 - j));	// Map the appropriate Column
 			}
@@ -43,7 +45,7 @@ uint16_t displayMatrix() {
 }
 
 void shift(uint16_t input) {
-	
+	// My own implementation of shiftOut(), tailored to the particular needs of this application only
 	for (uint16_t bit_mask = 32768; bit_mask > 0; bit_mask = bit_mask / 2)
 	{
 		if (bit_mask & input) {				// Begin with MSB and approach LSB with each iteration
@@ -53,9 +55,8 @@ void shift(uint16_t input) {
 			digitalWrite(data_pin, LOW);	// Set the output for shift-register LOW
 		}
 
-		digitalWrite(clock_pin, LOW);		// create a falling edge on the shift-registers SCKL Pin
+		digitalWrite(clock_pin, LOW);		// create a rising edge on the shift-registers SCKL Pin
 		digitalWrite(clock_pin, HIGH);		// -> shift 1 bit into the registers storage
-
 	}
 
 	digitalWrite(latch_pin, HIGH);			// Clock the collected data into the storage register to make it visible	
@@ -65,21 +66,11 @@ void shift(uint16_t input) {
 
 int insertLetter(int letter, int delay_ms) {
 
-
 	uint32_t current_letter = ascii[letter];
 	uint8_t current_nibble = 0;
+	// Start with 1, otherwise SPACE will not be displayed as a space.
 	uint8_t max_width = 1;
-	uint8_t offset = 4 * LETTER_WIDTH;
-
-	//Serial.print("Current Letter: ");
-	//Serial.println(current_letter);
-
-	// 0x 6    4    b    d    2    9, // A
-	//    0110 01001 01111 01001 01001
-
-	// 0x 6    9    f    9    9    // A
-	// 0b 0110 1001 1111 1001 1001
-	//    
+	uint8_t offset = (LETTER_HEIGHT-1) * LETTER_WIDTH;
 
 	// Calculate max_width
 	for (int i = 0; i < LETTER_HEIGHT; i++) {
@@ -91,33 +82,20 @@ int insertLetter(int letter, int delay_ms) {
 			}
 		}
 	}
-	/*Serial.print("Letter Width: ");
-	Serial.print(max_width);
-	Serial.print(" Letter:");
-	Serial.println(letter);*/
-	// Clear the space for the next Letter
-	/*for (int i = 0; i < max_width; i++) {
-		insertSpace();
-		shift_Matrix_left(delay_ms, 1);
-	}*/
 	shift_Matrix_left(delay_ms, max_width);
 
 	// Write letter into Matrix
 	for (int i = 0; i < LETTER_HEIGHT; i++){
 		current_nibble = (current_letter >> (offset - (LETTER_WIDTH * i))) & 0x1f;
-		//Serial.print("Current Nibble : ");
-		//Serial.println(current_nibble);
 
 		for (int j = 0; j < LETTER_WIDTH; j++)
 		{	
 			if (j < LETTER_WIDTH - max_width) {
-				// empty space in front of the current letter, dont write this into the matrix
+				// empty space in front of the current letter, don't write anything into the matrix
 			}
 			else {
-				// 
+				// Bits representing the pixels of each letter, make sure to write this into the matrix
 				matrix[i][MATRIX_WIDTH - 1 + j] = (current_nibble >> (LETTER_WIDTH - 1 - j)) & 0x01;
-				//Serial.print("Current Bit: ");
-				//Serial.println(matrix[i][10 + j]);
 			}
 		}
 	}
