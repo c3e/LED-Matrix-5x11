@@ -10,7 +10,7 @@ Text is displayed pictured in the following sheme:
 
 Initial Situation
 
-![calculate letter width](Images/calculate_letter_width)
+![calculate letter width](Images/calculate_letter_width.png)
 
 Calculate letter width
 
