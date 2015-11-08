@@ -9,7 +9,7 @@ void setup() {
 
  	//Serial.begin(115200);
 
-	Timer1.initialize(5000);					// initialize timer1, and set a 5 milli second period
+	Timer1.initialize(3000);					// initialize timer1, and set a 3 milli second period
 	Timer1.attachInterrupt(updateDisplay);		// attaches callback() as a timer overflow interrupt
 
   pinMode(latch_pin, OUTPUT);
@@ -29,23 +29,17 @@ void updateDisplay() {
 }
 
 void loop() {
-	/*for (int i = 30; i < 128; i++) {
-		
-		insertLetter(i, 200);
-		insertLetter(0, 200);
-	}*/
-	displayMessage("ES FUNKTIONIERT!  ",150);
-	/*
-	if (iteration % 400 == 0) {
-		insertLetter(letter);
-		shift_Matrix_right(1);
-		insertSpace();
-		letter++;
+	
+	displayMessage("ES FUNKTIONIERT!  ",50);
 
-		Serial.println(letter);
+	for (int i = 0; i < 20; i++) {
+		insertLetter(i, 100);
 	}
-	*/
 
+	/*for (int i = 0; i < 100; i++) {
+		insertLetter(i+27, i/10);
+		
+	}*/
 }
 
 

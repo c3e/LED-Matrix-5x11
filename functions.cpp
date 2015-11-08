@@ -17,15 +17,12 @@ void shift_Matrix_left(int delay_iteration, int ammount) {
 		for (int i = 0; i < MATRIX_HEIGHT; i++) {
 			matrix[i][MATRIX_WIDTH+MATRIX_BUFFER-1] = matrix_slice[i][0];
 		}
-
 		delay(delay_iteration);
 	}
-		
 }
 
 uint16_t displayMatrix() {
-	int i = 0;
-	int j = 0;
+	int i = 0, j = 0;
 	uint16_t shift_out = BLANK;
 
 	for (i = 0; i < MATRIX_HEIGHT; i++) {
@@ -117,14 +114,9 @@ void displayMessage(char* message, int delay_iteration) {
 		//Serial.println("Trying to print Message.");
 		while (message[i] != 0)
 		{
-			//Serial.print("Message(char) :");
-			//Serial.println(message[i]);
-			//letter_width = insertLetter(message[i]);
-			insertLetter(message[i], 200);
-			insertLetter(0, 200);
-			//shift_Matrix_left(delay_iteration,1);
-			//insertSpace();
-			//shift_Matrix_right(delay_iteration,letter_width);
+
+			insertLetter(message[i], delay_iteration);
+			insertLetter(36, delay_iteration);
 			i++;
 		}
 }
