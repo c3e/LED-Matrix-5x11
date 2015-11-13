@@ -9,23 +9,8 @@ void setup() {
 
  	//Serial.begin(115200);
 
-	Timer1.initialize(3000);					// initialize timer1, and set a 3 milli second period
-	Timer1.attachInterrupt(updateDisplay);		// attaches callback() as a timer overflow interrupt
-
-  pinMode(latch_pin, OUTPUT);
-  pinMode(clock_pin, OUTPUT);
-  pinMode(data_pin, OUTPUT);
- 
-  for (int i = 0; i < 5; i++) {
-	  for (int j = 0; j < 11; j++) {
-		  matrix[i][j] = false;
-	  }
-  }  
-}
-
-void updateDisplay() {
-	iteration++;
-	displayMatrix();
+	configure_pinning(7,8,9);
+	matrix_init();
 }
 
 void loop() {

@@ -1,5 +1,34 @@
 #include "functions.h"
 
+void matrix_init() {
+
+#if !defined FASTLED_VERSION
+	Timer1.initialize(3000);					// initialize timer1, and set a 3 milli second period
+#endif
+	Timer1.attachInterrupt(updateDisplay);		// attaches callback() as a timer overflow interrupt
+
+	pinMode(latch_pin, OUTPUT);
+	pinMode(clock_pin, OUTPUT);
+	pinMode(data_pin, OUTPUT);
+
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 11; j++) {
+			matrix[i][j] = false;
+		}
+	}
+}
+
+void updateDisplay() {
+	iteration++;
+	displayMatrix();
+}
+
+void configure_pinning(uint8_t new_latch_pin, uint8_t new_clock_pin, uint8_t new_data_pin) {
+	latch_pin	= new_latch_pin;
+	clock_pin	= new_clock_pin;
+	data_pin	= new_data_pin;
+}
+
 void shift_Matrix_left(int delay_iteration, int ammount) {
 
 	for (int counter = 0; counter < ammount; counter++) {
